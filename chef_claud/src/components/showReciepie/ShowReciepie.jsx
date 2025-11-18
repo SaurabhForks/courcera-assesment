@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
-const ShowReciepie = ({ hideRecipe, recipe }) => {
+const ShowReciepie = ({ hideRecipe, recipe, isLoading }) => {
     const [cleanedRecipe, setCleanedRecipe] = useState('');
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const ShowReciepie = ({ hideRecipe, recipe }) => {
                     ×
                 </button>
             </div>
-            {cleanedRecipe ? <div className="text-left"><Markdown >{cleanedRecipe}</Markdown></div> : <div>No recipe found</div>}
+            {isLoading ? <div>Preparing Recipie... </div> : cleanedRecipe ? <div className="text-left"><Markdown >{cleanedRecipe}</Markdown></div> : <div>No recipe found</div>}
         </div>
 
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { getRecipeFromMistral } from '../../utils/ai';
 
-const ViewIngredients = ({ ingredients, setIngredients, setShowRecipe, showRecipe, setRecipe }) => {
+const ViewIngredients = ({ ingredients, setIngredients, setShowRecipe, showRecipe, setRecipe, recipieSection, setIsLoading }) => {
     {/* Ingredients List */ }
     const removeIngredient = (index) => {
         setIngredients(ingredients.filter((_, i) => i !== index));
@@ -9,8 +9,10 @@ const ViewIngredients = ({ ingredients, setIngredients, setShowRecipe, showRecip
     const getRecipe = async () => {
         if (ingredients.length > 0) {
             setShowRecipe(true);
+            setIsLoading(true);
             const recipe = await getRecipeFromMistral(ingredients);
             setRecipe(recipe);
+            setIsLoading(false);
         }
     };
     return (
@@ -42,7 +44,7 @@ const ViewIngredients = ({ ingredients, setIngredients, setShowRecipe, showRecip
             </div>
             {/* Ready for Recipe Section */}
             {ingredients.length > 0 && !showRecipe && (
-                <div className="p-4 bg-gray-100 rounded-lg mb-6">
+                <div className="p-4 bg-gray-100 rounded-lg mb-6" ref={recipieSection}>
                     <h3 className="font-semibold text-gray-900 mb-1">Ready for a recipe?</h3>
                     <p className="text-sm text-gray-600 mb-3">Generate a recipe from your list of ingredients.</p>
                     <button
