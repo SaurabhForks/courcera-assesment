@@ -1,8 +1,18 @@
-export default async function ProductDetail({
-  params,
-}: {
+import { Metadata } from "next";
+
+type Props = {
   params: { productId: string };
-}) {
+};
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
+  const { productId } = await params;
+  return {
+    title: `Product ${productId} Detail Page`,
+    description: "This is the login page of the Next.js app",
+  };
+};
+export default async function ProductDetail({ params }: Props) {
   const { productId } = await params;
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">

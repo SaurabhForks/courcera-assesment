@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Home Page",
+  description: "This is the home page of the Next.js app",
+};
+
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
