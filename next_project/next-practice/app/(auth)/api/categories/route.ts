@@ -1,6 +1,8 @@
+import { NextResponse } from "next/server";
+
 export const dynamic = "force-static";
 export const revalidate = 10;
-export default async function GET() {
+export async function GET() {
   const categories = [
     { id: 1, name: "Technology" },
     { id: 2, name: "Health" },
@@ -8,8 +10,5 @@ export default async function GET() {
     { id: 4, name: "Education" },
   ];
 
-  return new Response(JSON.stringify(categories), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return NextResponse.json({ message: "Categories API", categories });
 }
