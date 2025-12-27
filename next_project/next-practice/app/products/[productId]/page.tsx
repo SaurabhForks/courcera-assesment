@@ -3,6 +3,9 @@ import { Metadata } from "next";
 type Props = {
   params: { productId: string };
 };
+export async function generatestaticParams() {
+  return [{ productId: "1" }, { productId: "2" }, { productId: "3" }];
+}
 export const generateMetadata = async ({
   params,
 }: Props): Promise<Metadata> => {
